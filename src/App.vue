@@ -85,6 +85,153 @@
   :largeur="boundingBox.width"
   :hauteur="boundingBox.height"
 />
+
+<AffichageRectangleIncline
+    v-if="selectedShape === 'rectangle_incline'"
+    :largeur="boundingBox.width"
+    :hauteur="boundingBox.height"
+/>
+    <AffichageTriangleIsocele
+        v-if="selectedShape === 'triangle_isocele'"
+        :base="boundingBox.base"
+        :hauteur="boundingBox.height"
+    />
+    <AffichageTriangleRectangle
+        v-if="selectedShape === 'triangle_rectangle'"
+        :base="boundingBox.base"
+        :hauteur="boundingBox.height"
+    />
+    <AffichageTrapeze
+        v-if="selectedShape === 'trapeze'"
+        :base="boundingBox.base"
+        :largeur="boundingBox.width"
+        :hauteur="boundingBox.height"
+    />
+    <AffichageParallelogramme
+        v-if="selectedShape === 'parallelogramme'"
+        :base="dimensions.base"
+        :hauteur="dimensions.hauteur"
+    />
+
+    <AffichageHexagone
+        v-if="selectedShape === 'hexagone'"
+        :cote="dimensions.cote"
+    />
+
+    <AffichageOctogone
+        v-if="selectedShape === 'octogone'"
+        :cote="dimensions.cote"
+    />
+
+    <AffichagePolygone
+        v-if="selectedShape === 'polygone'"
+        :nbCotes="dimensions.nbCotes"
+        :rayon="dimensions.rayon"
+    />
+
+    <AffichageRectangleArrondi
+        v-if="selectedShape === 'rectangle_arrondi'"
+        :largeur="boundingBox.width"
+        :hauteur="boundingBox.height"
+    />
+    <AffichageRond
+        v-if="selectedShape === 'rond '"
+        :largeur="boundingBox.width"
+        :hauteur="boundingBox.height"
+    />
+    <AffichageDemiCercle
+        v-if="selectedShape === 'demi_cercle'"
+        :diametre="dimensions.diametre"
+    />
+
+    <AffichageQuartDeCercle
+        v-if="selectedShape === 'quart_de_cercle'"
+        :largeur="boundingBox.width"
+        :hauteur="boundingBox.height"
+    />
+    <AffichageAnneau
+        v-if="selectedShape === 'anneau'"
+        :diametreExterieur="dimensions.diametre"
+        :diametreInterieur="dimensions.diametreInterieur"
+    />
+    <AffichageOeuf
+        v-if="selectedShape === 'oeuf'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+    />
+
+    <AffichageOvale
+        v-if="selectedShape === 'ovale'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+    />
+
+
+    <AffichageOvalePlat
+        v-if="selectedShape === 'ovale_plat'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+    />
+
+    <AffichageArche
+        v-if="selectedShape === 'arche'"
+        :largeurBase="dimensions.largeurBase"
+        :hauteurBase="dimensions.hauteurBase"
+        :rayon="dimensions.rayon"
+    />
+
+
+    <AffichageBaril
+        v-if="selectedShape === 'baril'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+        :rayon="dimensions.rayon"
+    />
+
+    <AffichageCoeur
+        v-if="selectedShape === 'coeur'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+    />
+
+    <AffichageFleche
+        v-if="selectedShape === 'fleche'"
+        :longueurBase="dimensions.longueurBase"
+        :hauteurBase="dimensions.hauteurBase"
+        :largeurTete="dimensions.largeurTete"
+        :hauteurTete="dimensions.hauteurTete"
+    />
+
+    <AffichageEtoile
+        v-if="selectedShape === 'etoile'"
+        :nbBranches="dimensions.nbBranches"
+        :rayonExterieur="dimensions.rayonExterieur"
+        :rayonInterieur="dimensions.rayonInterieur"
+    />
+
+    <AffichageGoutte
+        v-if="selectedShape === 'goutte'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+    />
+
+    <AffichageCerfVolant
+        v-if="selectedShape === 'cerf_volant'"
+        :largeur="dimensions.largeur"
+        :hauteurMax="dimensions.hauteurMax"
+        :hauteurMin="dimensions.hauteurMin"
+    />
+
+    <AffichageDiamant
+        v-if="selectedShape === 'diamant'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+    />
+
+
+
+
+
     <!-- 4. Dimensions spécifiques à chaque forme (ultra-exhaustif) -->
     <div class="grid grid-cols-2 gap-4">
       <div v-if="boundingBox.width && boundingBox.height" class="mt-2 text-sm text-gray-600 col-span-2">
@@ -413,8 +560,56 @@
 <!-- SCRIPT : identique à la version exhaustive précédente -->
 <script>
 import AffichageRectangle from './components/AffichageRectangle.vue';
+import AffichageRectangleIncline from "./components/AffichageRectangleIncline.vue";
+import AffichageTriangleIsocele from "./components/AffichageTriangleIsocele.vue";
+import AffichageTriangleRectangle from "./components/AffichageTriangleRectangle.vue";
+import AffichageTrapeze from "./components/AffichageTrapeze.vue";
+import AffichageParallelogramme from "./components/AffichageParallelogramme.vue";
+import AffichageHexagone from "./components/AffichageHexagone.vue";
+import AffichageOctogone from "./components/AffichageOctogone.vue";
+import AffichagePolygone from "./components/AffichagePolygone.vue";
+import AffichageRectangleArrondi from "./components/AffichageRectangleArrondi.vue";
+import AffichageRond from "./components/AffichageRond.vue";
+import AffichageDemiCercle from "./components/AffichageDemiCercle.vue";
+import AffichageQuartDeCercle from "./components/AffichageQuartDeCercle.vue";
+import AffichageAnneau from "./components/AffichageAnneau.vue";
+import AffichageOeuf from "./components/AffichageOeuf.vue";
+import AffichageOvale from "./components/AffichageOvale.vue";
+import AffichageOvalePlat from "./components/AffichageOvalePlat.vue";
+import AffichageArche from "./components/AffichageArche.vue";
+import AffichageBaril from "./components/AffichageBaril.vue";
+import AffichageCoeur from "./components/AffichageCoeur.vue";
+import AffichageFleche from "./components/AffichageFleche.vue";
+import AffichageEtoile from "./components/AffichageEtoile.vue";
+import AffichageGoutte from "./components/AffichageGoutte.vue";
+import AffichageCerfVolant from "./components/AffichageCerfVolant.vue";
+import AffichageDiamant from "./components/AffichageDiamant.vue";
 export default {
   components: {
+    AffichageDiamant,
+    AffichageCerfVolant,
+    AffichageGoutte,
+    AffichageEtoile,
+    AffichageFleche,
+    AffichageCoeur,
+    AffichageBaril,
+    AffichageArche,
+    AffichageOvalePlat,
+    AffichageOvale,
+    AffichageOeuf,
+    AffichageAnneau,
+    AffichageQuartDeCercle,
+    AffichageDemiCercle,
+    AffichageRond,
+    AffichageRectangleArrondi,
+    AffichagePolygone,
+    AffichageOctogone,
+    AffichageHexagone,
+    AffichageParallelogramme,
+    AffichageTrapeze,
+    AffichageTriangleRectangle,
+    AffichageTriangleIsocele,
+    AffichageRectangleIncline,
     AffichageRectangle
   },
   data() {
