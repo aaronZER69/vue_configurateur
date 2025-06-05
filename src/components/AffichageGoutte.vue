@@ -20,14 +20,16 @@ export default {
     gouttePath() {
       const w = this.largeur
       const h = this.hauteur
-      const cx = w / 2
+      const x = w / 2
+      const y = h / 4
 
       return `
-        M ${cx},0
-        C ${w},${h * 0.35} ${w},${h * 0.75} ${cx},${h}
-        C 0,${h * 0.75} 0,${h * 0.35} ${cx},0
-        Z
-      `
+  M ${x},0
+  C ${x + w / 2},${h * 0.4} ${x + w / 2},${h - y} ${x},${h - y}
+  C ${x - w / 2},${h - y} ${x - w / 2},${h * 0.4} ${x},0
+  Z
+`
+
     }
   }
 }
