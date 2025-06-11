@@ -20,14 +20,19 @@ export default {
     points() {
       const w = this.largeur
       const h = this.hauteur
+      const tableWidth = w * 0.6
+      const tableStart = (w - tableWidth) / 2
+      const tableEnd = tableStart + tableWidth
+      const shoulderHeight = h * 0.3
       const cx = w / 2
-      const cy = h / 2
+
       return `
-        ${cx},0
-        ${w},${cy}
+        ${tableStart},0
+        ${tableEnd},0
+        ${w},${shoulderHeight}
         ${cx},${h}
-        0,${cy}
-      `
+        0,${shoulderHeight}
+      `.trim()
     }
   }
 }

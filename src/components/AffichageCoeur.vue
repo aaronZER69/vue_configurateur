@@ -2,7 +2,7 @@
   <svg :width="largeur" :height="hauteur" style="border:1px solid #ccc">
     <path
         :d="coeurPath"
-        fill="#ffc0cb"
+        fill="#c0eaff"
         stroke="#333"
         stroke-width="2"
     />

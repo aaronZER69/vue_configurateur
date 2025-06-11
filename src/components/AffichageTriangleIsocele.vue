@@ -1,8 +1,8 @@
 <template>
   <svg :width="base" :height="hauteur" style="border:1px solid #ccc">
     <polygon
-        :points="`0,${hauteur} ${base / 2},0 ${base},${hauteur}`"
-        fill="#ffd580"
+        :points="points"
+        fill="#c0eaff"
         stroke="#333"
         stroke-width="2"
     />
@@ -13,8 +13,19 @@
 export default {
   name: 'AffichageTriangleIsocele',
   props: {
-    base: Number,
-    hauteur: Number
+    base: { type: Number, required: true },
+    hauteur: { type: Number, required: true }
+  },
+  computed: {
+    points() {
+      const cx = this.base / 2
+      const h = this.hauteur
+      return `
+        ${cx},0
+        ${this.base},${h}
+        0,${h}
+      `
+    }
   }
 }
 </script>

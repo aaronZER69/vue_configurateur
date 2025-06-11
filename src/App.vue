@@ -86,27 +86,32 @@
   :hauteur="boundingBox.height"
 />
 
-<AffichageRectangleIncline
-    v-if="selectedShape === 'rectangle_incline'"
-    :largeur="boundingBox.width"
-    :hauteur="boundingBox.height"
-/>
+    <AffichageRectangleIncline
+        v-if="selectedShape === 'rectangle_incline'"
+        :base="dimensions.base"
+        :hauteurGauche="dimensions.hauteurGauche"
+        :hauteurDroite="dimensions.hauteurDroite"
+    />
+
     <AffichageTriangleIsocele
         v-if="selectedShape === 'triangle_isocele'"
-        :base="boundingBox.base"
-        :hauteur="boundingBox.height"
+        :base="dimensions.base"
+        :hauteur="dimensions.hauteur"
     />
+
     <AffichageTriangleRectangle
         v-if="selectedShape === 'triangle_rectangle'"
-        :base="boundingBox.base"
-        :hauteur="boundingBox.height"
+        :base="dimensions.base"
+        :hauteur="dimensions.hauteur"
     />
+
     <AffichageTrapeze
         v-if="selectedShape === 'trapeze'"
-        :base="boundingBox.base"
-        :largeur="boundingBox.width"
-        :hauteur="boundingBox.height"
+        :base="dimensions.base"
+        :haut="dimensions.haut"
+        :hauteur="dimensions.hauteur"
     />
+
     <AffichageParallelogramme
         v-if="selectedShape === 'parallelogramme'"
         :base="dimensions.base"
@@ -131,13 +136,18 @@
 
     <AffichageRectangleArrondi
         v-if="selectedShape === 'rectangle_arrondi'"
-        :largeur="boundingBox.width"
-        :hauteur="boundingBox.height"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
+        :rayonSupGauche="dimensions.rayonSupGauche"
+        :rayonSupDroit="dimensions.rayonSupDroit"
+        :rayonInfGauche="dimensions.rayonInfGauche"
+        :rayonInfDroit="dimensions.rayonInfDroit"
     />
+
     <AffichageRond
-        v-if="selectedShape === 'rond '"
-        :largeur="boundingBox.width"
-        :hauteur="boundingBox.height"
+        v-if="selectedShape === 'rond'"
+        :largeur="dimensions.largeur"
+        :hauteur="dimensions.hauteur"
     />
     <AffichageDemiCercle
         v-if="selectedShape === 'demi_cercle'"
@@ -146,9 +156,9 @@
 
     <AffichageQuartDeCercle
         v-if="selectedShape === 'quart_de_cercle'"
-        :largeur="boundingBox.width"
-        :hauteur="boundingBox.height"
+        :rayon="dimensions.rayon"
     />
+
     <AffichageAnneau
         v-if="selectedShape === 'anneau'"
         :diametreExterieur="dimensions.diametre"

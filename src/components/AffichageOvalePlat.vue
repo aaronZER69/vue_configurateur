@@ -5,7 +5,7 @@
         :cy="hauteur / 2"
         :rx="largeur / 2"
         :ry="hauteur / 2"
-        fill="#ffe8cc"
+        fill="#c0eaff"
         stroke="#333"
         stroke-width="2"
     />

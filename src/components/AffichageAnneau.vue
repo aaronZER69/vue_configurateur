@@ -12,7 +12,7 @@
         :cx="diametreExterieur / 2"
         :cy="diametreExterieur / 2"
         :r="diametreInterieur / 2"
-        fill="white"
+        fill="#242424"
         stroke="#333"
         stroke-width="2"
     />

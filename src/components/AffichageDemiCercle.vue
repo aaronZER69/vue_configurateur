@@ -1,9 +1,9 @@
 <template>
-  <svg :width="diametre" :height="rayon" style="border:1px solid #ccc">
+  <svg :width="diametre" :height="rayon" style="border:1px solid #ccc; background-color: #242424">
     <path
         :d="path"
         fill="#c0eaff"
-        stroke="#333"
+        stroke="#242424"
         stroke-width="2"
     />
   </svg>

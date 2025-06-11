@@ -18,18 +18,17 @@ export default {
   },
   computed: {
     gouttePath() {
-      const w = this.largeur
-      const h = this.hauteur
-      const x = w / 2
-      const y = h / 4
+      const w = this.largeur;
+      const h = this.hauteur;
+      const cx = w / 2;
+      const cy = h / 2;
 
       return `
-  M ${x},0
-  C ${x + w / 2},${h * 0.4} ${x + w / 2},${h - y} ${x},${h - y}
-  C ${x - w / 2},${h - y} ${x - w / 2},${h * 0.4} ${x},0
-  Z
+       M ${cx},${cy + h / 2}
+C ${cx + w / 2},${cy + h / 2} ${cx + w / 2},${cy} ${cx},${cy - h / 2}
+C ${cx - w / 2},${cy} ${cx - w / 2},${cy + h / 2} ${cx},${cy + h / 2}
+Z
 `
-
     }
   }
 }

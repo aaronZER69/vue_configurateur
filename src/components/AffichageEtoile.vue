@@ -2,7 +2,7 @@
   <svg :width="2 * rayonExterieur" :height="2 * rayonExterieur" style="border:1px solid #ccc">
     <polygon
         :points="points"
-        fill="#ffe4b5"
+        fill="#c0eaff"
         stroke="#333"
         stroke-width="2"
     />
