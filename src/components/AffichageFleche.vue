@@ -15,7 +15,7 @@
     <polygon
         :points="tetePoints"
         fill="#c0eaff"
-        stroke="#333"
+        stroke="#c0eaff"
         stroke-width="2"
     />
   </svg>

@@ -20,15 +20,18 @@ export default {
     coeurPath() {
       const w = this.largeur
       const h = this.hauteur
-      const x = w / 2
-      const y = h / 4
+      const cx = w / 2
 
       return `
-        M ${x},${h}
-        C ${x - w / 2},${h * 0.6} ${x - w / 2},${y} ${x},${y}
-        C ${x + w / 2},${y} ${x + w / 2},${h * 0.6} ${x},${h}
+        M ${cx},${h * 0.3}
+        C ${cx},${h * 0.1} ${cx - w * 0.2},0 ${cx - w * 0.35},0
+        C ${cx - w * 0.5},0 ${cx - w * 0.5},${h * 0.2} ${cx - w * 0.5},${h * 0.3}
+        C ${cx - w * 0.5},${h * 0.4} ${cx},${h * 0.6} ${cx},${h}
+        C ${cx},${h * 0.6} ${cx + w * 0.5},${h * 0.4} ${cx + w * 0.5},${h * 0.3}
+        C ${cx + w * 0.5},${h * 0.2} ${cx + w * 0.5},0 ${cx + w * 0.35},0
+        C ${cx + w * 0.2},0 ${cx},${h * 0.1} ${cx},${h * 0.3}
         Z
-      `
+      `.trim()
     }
   }
 }

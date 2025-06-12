@@ -3,7 +3,7 @@
     <path
         :d="path"
         fill="#c0eaff"
-        stroke="#242424"
+        stroke="#c0eaff"
         stroke-width="2"
     />
   </svg>
