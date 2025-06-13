@@ -11,6 +11,9 @@ export default function calculPrix({ shape, dimensions, material, thickness, qua
     const extras = additional(dimensions, thickness)
 
 
-    const prixUnitaire = prixMatiere + prixDecoupe + extras
+    let prixUnitaire = prixMatiere + prixDecoupe + extras
+    if (anglesArrondis){
+        prixUnitaire = prixUnitaire + 2.5
+    }
     return prixUnitaire * quantity
 }

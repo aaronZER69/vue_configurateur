@@ -2,17 +2,7 @@
   <div class="p-4 max-w-3xl mx-auto space-y-4">
     <h2 class="text-2xl font-bold mb-2">Configurateur Plexiglass</h2>
 
-    <!-- 1. Dimensions principales : longueur/largeur toujours présents -->
-    <div class="grid grid-cols-2 gap-4">
-      <div>
-        <label>Longueur (mm)</label>
-        <input type="number" v-model.number="dimensions.longueur" min="1" />
-      </div>
-      <div>
-        <label>Largeur (mm)</label>
-        <input type="number" v-model.number="dimensions.largeur" min="1" />
-      </div>
-    </div>
+
 
     <!-- 2. Catégorie / Matériau / Épaisseur -->
     <div class="grid grid-cols-2 gap-4 mt-4">
@@ -397,7 +387,7 @@
     <div>
       <label><input type="checkbox" v-model="trous" /> Trous</label>
     </div>
-    <div v-if="trous && selectedShape === 'rectangle'" class="mb-4">
+    <div v-if="trous" class="mb-4">
       <label>Disposition des trous</label>
       <select v-model="trousOption">
         <option value="coin">Trous sur les 4 coins</option>
