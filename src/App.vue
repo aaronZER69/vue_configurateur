@@ -74,6 +74,8 @@
   v-if="selectedShape === 'rectangle'"
   :largeur="boundingBox.width"
   :hauteur="boundingBox.height"
+  :anglesArrondis="anglesArrondis"
+  :rayonAngle="rayonAngle"
 />
 
     <AffichageRectangleIncline
@@ -81,18 +83,24 @@
         :base="dimensions.base"
         :hauteurGauche="dimensions.hauteurGauche"
         :hauteurDroite="dimensions.hauteurDroite"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageTriangleIsocele
         v-if="selectedShape === 'triangle_isocele'"
         :base="dimensions.base"
         :hauteur="dimensions.hauteur"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageTriangleRectangle
         v-if="selectedShape === 'triangle_rectangle'"
         :base="dimensions.base"
         :hauteur="dimensions.hauteur"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageTrapeze
@@ -100,28 +108,38 @@
         :base="dimensions.base"
         :haut="dimensions.haut"
         :hauteur="dimensions.hauteur"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageParallelogramme
         v-if="selectedShape === 'parallelogramme'"
         :base="dimensions.base"
         :hauteur="dimensions.hauteur"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageHexagone
         v-if="selectedShape === 'hexagone'"
         :cote="dimensions.cote"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageOctogone
         v-if="selectedShape === 'octogone'"
         :cote="dimensions.cote"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichagePolygone
         v-if="selectedShape === 'polygone'"
         :nbCotes="dimensions.nbCotes"
         :rayon="dimensions.rayon"
+        :anglesArrondis="anglesArrondis"
+        :rayonAngle="rayonAngle"
     />
 
     <AffichageRectangleArrondi
@@ -371,17 +389,20 @@
     </div>
 
     <!-- 5. Angles arrondis (uniquement formes droites) -->
-    <div v-if="isFormeDroite" class="mb-2">
+    <div v-if="isFormeDroite">
       <label>
-        <input type="checkbox" v-model="anglesArrondis" /> Angles arrondis
+        <input type="checkbox" v-model="anglesArrondis" />
+        Angles arrondis
       </label>
+
       <div v-if="anglesArrondis" class="flex items-center gap-2 mt-1">
         <label>Rayon de l'angle (mm):</label>
-        <button class="px-2 rounded bg-gray-200" @click="changerRayonAngle(-1)">-</button>
+        <button @click="changerRayonAngle(-1)">-</button>
         <input type="number" v-model.number="rayonAngle" min="1" style="width: 70px;" />
-        <button class="px-2 rounded bg-gray-200" @click="changerRayonAngle(1)">+</button>
+        <button @click="changerRayonAngle(1)">+</button>
       </div>
     </div>
+
 
     <!-- 6. Bloc TROUS (exhaustif pour rectangle, voir variantes plus haut pour autres formes) -->
     <div>
