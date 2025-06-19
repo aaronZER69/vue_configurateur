@@ -1,8 +1,3 @@
-export default function anglesArrondis(dimensions) {
-    const { rayonSupGauche, rayonSupDroit, rayonInfGauche, rayonInfDroit } = dimensions
-    const total = rayonSupGauche + rayonSupDroit + rayonInfGauche + rayonInfDroit
-    return total > 0 ? 1.5 : 0
-}
 export function getRoundedPolygonOutside(points, radius) {
     if (points.length < 3 || radius <= 0) {
         return (
@@ -10,51 +5,43 @@ export function getRoundedPolygonOutside(points, radius) {
         );
     }
 
-    const n = points.length;
     const path = [];
+    const len = points.length;
 
-    for (let i = 0; i < n; i++) {
-        const p0 = points[(i - 1 + n) % n];
-        const p1 = points[i];
-        const p2 = points[(i + 1) % n];
+    for (let i = 0; i < len; i++) {
+        const prev = points[(i - 1 + len) % len];
+        const curr = points[i];
+        const next = points[(i + 1) % len];
 
-        const v1 = { x: p1.x - p0.x, y: p1.y - p0.y };
-        const v2 = { x: p2.x - p1.x, y: p2.y - p1.y };
+        // vecteurs
+        const v1 = { x: curr.x - prev.x, y: curr.y - prev.y };
+        const v2 = { x: next.x - curr.x, y: next.y - curr.y };
 
         const len1 = Math.hypot(v1.x, v1.y);
         const len2 = Math.hypot(v2.x, v2.y);
 
-        const unitV1 = { x: v1.x / len1, y: v1.y / len1 };
-        const unitV2 = { x: v2.x / len2, y: v2.y / len2 };
+        const minLen = Math.min(len1, len2);
 
-        const angle = Math.acos(
-            (unitV1.x * unitV2.x + unitV1.y * unitV2.y)
-        );
+        const dist = Math.min(radius, minLen / 3); // limite pour ne pas dépasser les bords
 
-        const tangent = Math.tan(angle / 2);
-        const segmentLength = radius / tangent;
-
-        const pStart = {
-            x: p1.x - unitV1.x * segmentLength,
-            y: p1.y - unitV1.y * segmentLength,
+        // points d'entrée et de sortie pour l'arrondi
+        const p1 = {
+            x: curr.x - (v1.x / len1) * dist,
+            y: curr.y - (v1.y / len1) * dist,
         };
-        const pEnd = {
-            x: p1.x + unitV2.x * segmentLength,
-            y: p1.y + unitV2.y * segmentLength,
+        const p2 = {
+            x: curr.x + (v2.x / len2) * dist,
+            y: curr.y + (v2.y / len2) * dist,
         };
-
-        const arcSweep = 0; // convex arc
-        const largeArc = 0;
 
         if (i === 0) {
-            path.push(`M ${pStart.x} ${pStart.y}`);
+            path.push(`M ${p1.x} ${p1.y}`);
         } else {
-            path.push(`L ${pStart.x} ${pStart.y}`);
+            path.push(`L ${p1.x} ${p1.y}`);
         }
 
-        path.push(
-            `A ${radius} ${radius} 0 ${largeArc} ${arcSweep} ${pEnd.x} ${pEnd.y}`
-        );
+        // petit arrondi convexe
+        path.push(`Q ${curr.x} ${curr.y} ${p2.x} ${p2.y}`);
     }
 
     path.push('Z');
