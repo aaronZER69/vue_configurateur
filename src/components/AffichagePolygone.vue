@@ -1,7 +1,7 @@
 <template>
   <svg :width="2 * rayon" :height="2 * rayon" style="border:1px solid #ccc">
-    <polygon
-        :points="points"
+    <path
+        :d="pathData"
         fill="#c0eaff"
         stroke="#333"
         stroke-width="2"
@@ -10,14 +10,18 @@
 </template>
 
 <script>
+import { getRoundedPolygonOutside } from '../utils/anglesArrondis.js'
+
 export default {
   name: 'AffichagePolygone',
   props: {
     nbCotes: { type: Number, required: true },
-    rayon: { type: Number, required: true }
+    rayon: { type: Number, required: true },
+    anglesArrondis: { type: Boolean, default: false },
+    rayonAngle: { type: Number, default: 10 }
   },
   computed: {
-    points() {
+    pointList() {
       const cx = this.rayon
       const cy = this.rayon
       const coords = []
@@ -27,10 +31,18 @@ export default {
         const angle = i * angleStep - Math.PI / 2
         const x = cx + this.rayon * Math.cos(angle)
         const y = cy + this.rayon * Math.sin(angle)
-        coords.push(`${x},${y}`)
+        coords.push({ x, y })
       }
 
-      return coords.join(' ')
+      return coords
+    },
+    pathData() {
+      if (this.anglesArrondis) {
+        return getRoundedPolygonOutside(this.pointList, this.rayonAngle)
+      }
+      return this.pointList.map((p, i) =>
+          i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`
+      ).join(' ') + ' Z'
     }
   }
 }

@@ -154,8 +154,7 @@
 
     <AffichageRond
         v-if="selectedShape === 'rond'"
-        :largeur="dimensions.largeur"
-        :hauteur="dimensions.hauteur"
+        :diametre="dimensions.diametre"
     />
     <AffichageDemiCercle
         v-if="selectedShape === 'demi_cercle'"
@@ -333,7 +332,7 @@
       </template>
       <!-- Ovale -->
       <template v-if="selectedShape === 'ovale'">
-        <div><label>Longueur (mm)</label><input type="number" v-model.number="dimensions.longueur" min="1" /></div>
+        <div><label>Largeur (mm)</label><input type="number" v-model.number="dimensions.largeur" min="1" /></div>
         <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteur" min="1" /></div>
       </template>
       <!-- Ovale plat -->
@@ -375,7 +374,6 @@
       </template>
       <!-- Cerf-volant -->
       <template v-if="selectedShape === 'cerf_volant'">
-        <div><label>Largeur totale (mm)</label><input type="number" v-model.number="dimensions.largeurTotale" min="1" /></div>
         <div><label>Hauteur maximale (mm)</label><input type="number" v-model.number="dimensions.hauteurMax" min="1" /></div>
         <div><label>Hauteur minimale (mm)</label><input type="number" v-model.number="dimensions.hauteurMin" min="1" /></div>
         <div><label>Largeur (mm)</label><input type="number" v-model.number="dimensions.largeur" min="1" /></div>
