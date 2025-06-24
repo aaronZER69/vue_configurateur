@@ -1,19 +1,8 @@
 <template>
-  <svg :width="largeurBase" :height="hauteurBase + rayon" style="border:1px solid #ccc">
-    <!-- Rectangle bas -->
-    <rect
-        x="0"
-        :y="rayon"
-        :width="largeurBase"
-        :height="hauteurBase"
-        fill="#c0eaff"
-        stroke="#333"
-        stroke-width="2"
-    />
-
-    <!-- Demi-cercle haut -->
+  <svg :width="largeurBase" :height="hauteurBase + rayon" style="background-color: #242424">
+    <!-- Forme complète : demi-cercle + rectangle en un seul path -->
     <path
-        :d="arcPath"
+        :d="formeComplete"
         fill="#c0eaff"
         stroke="#333"
         stroke-width="2"
@@ -30,16 +19,18 @@ export default {
     rayon: { type: Number, required: true }
   },
   computed: {
-    arcPath() {
-      const cx = this.largeurBase / 2
-      const r = this.rayon
+    formeComplete() {
+      const r = this.rayon;
+      const w = this.largeurBase;
+      const h = this.hauteurBase;
+
       return `
         M 0,${r}
-        A ${r},${r} 0 0,1 ${this.largeurBase},${r}
-        L ${this.largeurBase},0
-        L 0,0
+        A ${r},${r} 0 0,1 ${w},${r}
+        L ${w},${r + h}
+        L 0,${r + h}
         Z
-      `
+      `;
     }
   }
 }

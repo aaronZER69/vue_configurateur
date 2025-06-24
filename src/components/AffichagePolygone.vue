@@ -1,5 +1,5 @@
 <template>
-  <svg :width="2 * rayon" :height="2 * rayon" style="border:1px solid #ccc">
+  <svg :width="2 * rayon" :height="2 * rayon" style="background-color: #242424">
     <path
         :d="pathData"
         fill="#c0eaff"
@@ -16,11 +16,15 @@ export default {
   name: 'AffichagePolygone',
   props: {
     nbCotes: { type: Number, required: true },
-    rayon: { type: Number, required: true },
+    cote: { type: Number, required: true },  // longueur d’un côté
     anglesArrondis: { type: Boolean, default: false },
     rayonAngle: { type: Number, default: 10 }
   },
   computed: {
+    rayon() {
+      // Rayon du cercle circonscrit
+      return this.cote / (2 * Math.sin(Math.PI / this.nbCotes))
+    },
     pointList() {
       const cx = this.rayon
       const cy = this.rayon

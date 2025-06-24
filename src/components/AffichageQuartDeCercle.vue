@@ -1,5 +1,5 @@
 <template>
-  <svg :width="rayon" :height="rayon" style="border:1px solid #ccc">
+  <svg :width="rayon" :height="rayon" style="background-color: #242424">
     <path
         :d="path"
         fill="#c0eaff"

@@ -137,7 +137,7 @@
     <AffichagePolygone
         v-if="selectedShape === 'polygone'"
         :nbCotes="dimensions.nbCotes"
-        :rayon="dimensions.rayon"
+        :cote="dimensions.cote"
         :anglesArrondis="anglesArrondis"
         :rayonAngle="rayonAngle"
     />
@@ -186,7 +186,7 @@
 
     <AffichageOvalePlat
         v-if="selectedShape === 'ovale_plat'"
-        :largeur="dimensions.largeur"
+        :longueur="dimensions.longueur"
         :hauteur="dimensions.hauteur"
     />
 
@@ -243,6 +243,7 @@
         v-if="selectedShape === 'diamant'"
         :largeur="dimensions.largeur"
         :hauteur="dimensions.hauteur"
+
     />
 
 
@@ -338,12 +339,12 @@
       <!-- Ovale plat -->
       <template v-if="selectedShape === 'ovale_plat'">
         <div><label>Longueur (mm)</label><input type="number" v-model.number="dimensions.longueur" min="1" /></div>
-        <div><label>Rayon du demi-cercle de chaque côté (mm)</label><input type="number" v-model.number="dimensions.rayonDemiCercle" min="1" /></div>
+        <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteur" min="1" /></div>
       </template>
       <!-- Arche -->
       <template v-if="selectedShape === 'arche'">
         <div><label>Largeur de la base (mm)</label><input type="number" v-model.number="dimensions.largeurBase" min="1" /></div>
-        <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteur" min="1" /></div>
+        <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteurBase" min="1" /></div>
       </template>
       <!-- Baril -->
       <template v-if="selectedShape === 'baril'">
@@ -369,7 +370,7 @@
       </template>
       <!-- Goutte -->
       <template v-if="selectedShape === 'goutte'">
-        <div><label>Largeur de la base (mm)</label><input type="number" v-model.number="dimensions.largeurBase" min="1" /></div>
+        <div><label>Largeur de la base (mm)</label><input type="number" v-model.number="dimensions.largeur" min="1" /></div>
         <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteur" min="1" /></div>
       </template>
       <!-- Cerf-volant -->
@@ -380,9 +381,9 @@
       </template>
       <!-- Diamant -->
       <template v-if="selectedShape === 'diamant'">
-        <div><label>Largeur du Haut (mm)</label><input type="number" v-model.number="dimensions.largeurHaut" min="1" /></div>
-        <div><label>Hauteur maximale (mm)</label><input type="number" v-model.number="dimensions.hauteurMax" min="1" /></div>
-        <div><label>Hauteur minimale (mm)</label><input type="number" v-model.number="dimensions.hauteurMin" min="1" /></div>
+        <div><label>Largeur du Haut (mm)</label><input type="number" v-model.number="dimensions.largeur" min="1" /></div>
+        <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteur" min="1" /></div>
+
       </template>
     </div>
 
@@ -780,7 +781,7 @@ export default {
 const matiere = basePrice * surface;
 const prixBaseSansSuppl = matiere + laser;
 const chanfreinPrice = this.chanfrein ? prixBaseSansSuppl * 0.25 * this.quantity : 0;
-	  
+
 	  // AJOUT SUPPLÉMENT ÉPAISSEUR SPÉCIFIQUE
 const moGrossEpassior = (ep) => {
   ep = Number(ep); // Cast ici !

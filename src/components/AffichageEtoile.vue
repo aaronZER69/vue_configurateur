@@ -1,5 +1,5 @@
 <template>
-  <svg :width="2 * rayonExterieur" :height="2 * rayonExterieur" style="border:1px solid #ccc">
+  <svg :width="2 * rayonExterieur" :height="2 * rayonExterieur" style="background-color: #242424">
     <polygon
         :points="points"
         fill="#c0eaff"

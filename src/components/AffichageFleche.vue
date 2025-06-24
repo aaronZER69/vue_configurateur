@@ -1,5 +1,5 @@
 <template>
-  <svg :width="Math.max(longueurBase, largeurTete)" :height="hauteurTotale" style="border:1px solid #ccc">
+  <svg :width="Math.max(longueurBase, largeurTete)" :height="hauteurTotale" style="background-color: #242424">
     <!-- Corps de la flèche (rectangle) -->
     <rect
         :x="(maxLargeur - longueurBase) / 2"

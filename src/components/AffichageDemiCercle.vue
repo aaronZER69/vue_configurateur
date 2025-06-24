@@ -1,9 +1,9 @@
 <template>
-  <svg :width="diametre" :height="rayon" style="border:1px solid #ccc; background-color: #242424">
+  <svg :width="diametre" :height="rayon" style="background-color: #242424">
     <path
         :d="path"
         fill="#c0eaff"
-        stroke="#c0eaff"
+        stroke="#333"
         stroke-width="2"
     />
   </svg>
@@ -20,14 +20,12 @@ export default {
       return this.diametre / 2
     },
     path() {
-      const r = this.rayon
+      const r = this.rayon;
       return `
         M 0,${r}
         A ${r},${r} 0 0,1 ${this.diametre},${r}
-        L ${this.diametre},0
-        L 0,0
-        Z
-      `
+        A ${r},${r} 0 0,1 0,${r}
+      `;
     }
   }
 }

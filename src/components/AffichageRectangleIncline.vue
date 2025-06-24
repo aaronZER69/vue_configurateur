@@ -1,5 +1,5 @@
 <template>
-  <svg :width="base" :height="hauteurMax" style="border:1px solid #ccc">
+  <svg :width="base" :height="hauteurMax" >
     <path
         :d="pathData"
         fill="#c0eaff"

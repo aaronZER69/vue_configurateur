@@ -1,5 +1,5 @@
 <template>
-  <svg :width="largeur" :height="hauteur" style="border:1px solid #ccc">
+  <svg :width="largeur" :height="hauteur" style="background-color: #242424">
     <polygon
         :points="points"
         fill="#c0eaff"

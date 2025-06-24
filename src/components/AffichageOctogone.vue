@@ -1,5 +1,5 @@
 <template>
-  <svg :width="taille" :height="taille" style="border:1px solid #ccc">
+  <svg :width="taille" :height="taille" style="background-color: #242424">
     <path
         :d="pathData"
         fill="#c0eaff"

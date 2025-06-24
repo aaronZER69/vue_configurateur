@@ -1,5 +1,5 @@
 <template>
-  <svg :width="diametreExterieur" :height="diametreExterieur" style="border:1px solid #ccc">
+  <svg :width="diametreExterieur" :height="diametreExterieur" style="background-color: #242424">
     <circle
         :cx="diametreExterieur / 2"
         :cy="diametreExterieur / 2"
