@@ -200,7 +200,6 @@
 
     <AffichageBaril
         v-if="selectedShape === 'baril'"
-        :largeur="dimensions.largeur"
         :hauteur="dimensions.hauteur"
         :rayon="dimensions.rayon"
     />
@@ -348,7 +347,7 @@
       </template>
       <!-- Baril -->
       <template v-if="selectedShape === 'baril'">
-        <div><label>Longueur (mm)</label><input type="number" v-model.number="dimensions.longueur" min="1" /></div>
+        <div><label>Largeur (mm)</label><input type="number" v-model.number="dimensions.rayon" min="1" /></div>
         <div><label>Hauteur (mm)</label><input type="number" v-model.number="dimensions.hauteur" min="1" /></div>
       </template>
       <!-- Coeur -->
@@ -512,6 +511,94 @@
           <div><label>Longueur (mm)</label><input type="number" v-model.number="innerDimensions.longueur" min="1" /></div>
           <div><label>Hauteur gauche (mm)</label><input type="number" v-model.number="innerDimensions.hauteurGauche" min="1" /></div>
           <div><label>Hauteur droite (mm)</label><input type="number" v-model.number="innerDimensions.hauteurDroite" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'triangle_isocele'">
+          <div><label>Longueur de la base (mm)</label><input type="number" v-model.number="innerDimensions.base" min="1" /></div>
+          <div><label>Hauteur du triangle (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'triangle_rectangle'">
+          <div><label>Longueur de la base (mm)</label><input type="number" v-model.number="innerDimensions.base" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'trapeze'">
+          <div><label>Longueur de la base (mm)</label><input type="number" v-model.number="innerDimensions.base" min="1" /></div>
+          <div><label>Largeur du haut (mm)</label><input type="number" v-model.number="innerDimensions.haut" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'parallelogramme'">
+          <div><label>Largeur (mm)</label><input type="number" v-model.number="innerDimensions.largeur" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'hexagone'">
+          <div><label>Longueur d'un côté (mm)</label><input type="number" v-model.number="innerDimensions.cote" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'octogone'">
+          <div><label>Longueur d'un côté (mm)</label><input type="number" v-model.number="innerDimensions.cote" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'polygone'">
+          <div><label>Nombre de côtés</label><input type="number" v-model.number="innerDimensions.nbCotes" min="3" /></div>
+          <div><label>Largeur d'un côté (mm)</label><input type="number" v-model.number="innerDimensions.cote" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'rectangle_arrondi'">
+          <div><label>Longueur (mm)</label><input type="number" v-model.number="innerDimensions.longueur" min="1" /></div>
+          <div><label>Largeur (mm)</label><input type="number" v-model.number="innerDimensions.largeur" min="1" /></div>
+          <div><label>Rayon supérieur gauche (mm)</label><input type="number" v-model.number="innerDimensions.rayonSupGauche" min="0" /></div>
+          <div><label>Rayon supérieur droit (mm)</label><input type="number" v-model.number="innerDimensions.rayonSupDroit" min="0" /></div>
+          <div><label>Rayon inférieur gauche (mm)</label><input type="number" v-model.number="innerDimensions.rayonInfGauche" min="0" /></div>
+          <div><label>Rayon inférieur droit (mm)</label><input type="number" v-model.number="innerDimensions.rayonInfDroit" min="0" /></div>
+        </template>
+        <template v-if="innerShape === 'rond'">
+          <div><label>Diamètre (mm)</label><input type="number" v-model.number="innerDimensions.diametre" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'demi_cercle'">
+          <div><label>Diamètre du cercle (mm)</label><input type="number" v-model.number="innerDimensions.diametre" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'quart_de_cercle'">
+          <div><label>Rayon (mm)</label><input type="number" v-model.number="innerDimensions.rayon" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'anneau'">
+          <div><label>Diamètre extérieur (mm)</label><input type="number" v-model.number="innerDimensions.diametre" min="1" /></div>
+          <div><label>Diamètre intérieur (mm)</label><input type="number" v-model.number="innerDimensions.diametreInterieur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'oeuf'">
+          <div><label>Largeur (mm)</label><input type="number" v-model.number="innerDimensions.largeur" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'ovale_plat'">
+          <div><label>Longueur (mm)</label><input type="number" v-model.number="innerDimensions.longueur" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'arche'">
+          <div><label>Largeur de la base (mm)</label><input type="number" v-model.number="innerDimensions.largeurBase" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteurBase" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'coeur'">
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'fleche'">
+          <div><label>Longueur de la base (mm)</label><input type="number" v-model.number="innerDimensions.longueurBase" min="1" /></div>
+          <div><label>Hauteur de la base (mm)</label><input type="number" v-model.number="innerDimensions.hauteurBase" min="1" /></div>
+          <div><label>Largeur de la tête de flèche (mm)</label><input type="number" v-model.number="innerDimensions.largeurTete" min="1" /></div>
+          <div><label>Hauteur de la tête de flèche (mm)</label><input type="number" v-model.number="innerDimensions.hauteurTete" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'etoile'">
+          <div><label>Rayon intérieur (mm)</label><input type="number" v-model.number="innerDimensions.rayonInterieur" min="1" /></div>
+          <div><label>Rayon extérieur (mm)</label><input type="number" v-model.number="innerDimensions.rayonExterieur" min="1" /></div>
+          <div><label>Nombre de branches</label><input type="number" v-model.number="innerDimensions.nbBranches" min="3" /></div>
+        </template>
+        <template v-if="innerShape === 'goutte'">
+          <div><label>Largeur de la base (mm)</label><input type="number" v-model.number="innerDimensions.largeur" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'cerf_volant'">
+          <div><label>Hauteur maximale (mm)</label><input type="number" v-model.number="innerDimensions.hauteurMax" min="1" /></div>
+          <div><label>Hauteur minimale (mm)</label><input type="number" v-model.number="innerDimensions.hauteurMin" min="1" /></div>
+          <div><label>Largeur (mm)</label><input type="number" v-model.number="innerDimensions.largeur" min="1" /></div>
+        </template>
+        <template v-if="innerShape === 'diamant'">
+          <div><label>Largeur du Haut (mm)</label><input type="number" v-model.number="innerDimensions.largeur" min="1" /></div>
+          <div><label>Hauteur (mm)</label><input type="number" v-model.number="innerDimensions.hauteur" min="1" /></div>
+
         </template>
         <!-- ...copier pour chaque forme comme ci-dessus, adapter innerDimensions -->
         <!-- (par souci de lisibilité, tu peux copier toutes les templates depuis la partie principale) -->
