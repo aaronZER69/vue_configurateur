@@ -76,6 +76,10 @@
   :hauteur="boundingBox.height"
   :anglesArrondis="anglesArrondis"
   :rayonAngle="rayonAngle"
+  :trous-active="true"
+  :trous-option="'coin'"
+  :trous-coin="{ distance: 1, diametre: 10 }"
+  :trous-perso="[]"
 />
 
     <AffichageRectangleIncline
@@ -749,7 +753,7 @@ export default {
       },
       innerPosition: { x: 0, y: 0 },
       innerRotation: 0,
-      trous: false,
+      getTrous: false,
       trousOption: '',
       trousCoin: { distance: 10, diametre: 5 },
       trousContour: { distance: 10, diametre: 5, nb1: 0, nb2: 0, nb3: 0, nb4: 0 },

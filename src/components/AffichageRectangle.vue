@@ -7,36 +7,50 @@
         stroke="#333"
         stroke-width="2"
     />
-
-    <!-- Découpe intérieure (si activée) -->
-    <g
-        v-if="decoupeInterieure"
-        :transform="`translate(${innerPosition.x}, ${innerPosition.y}) rotate(${innerRotation})`"
-    >
-      <path
-          :d="getInnerShapePath(innerShape, innerDimensions)"
+    <g v-if="trousAffiches.length > 0">
+      <circle
+          v-for="(trou, index) in trousAffiches"
+          :key="index"
+          :cx="trou.x + x"
+          :cy="trou.y + y"
+          :r="trou.r"
           fill="white"
-          stroke="red"
-          stroke-dasharray="4"
       />
     </g>
+
+
+
+
   </svg>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import { getTrous } from "../utils/trous.js";
 
 const props = defineProps({
   largeur: Number,
   hauteur: Number,
   anglesArrondis: Boolean,
   rayonAngle: Number,
-  decoupeInterieure: Boolean,
-  innerShape: String,
-  innerDimensions: Object,
-  innerPosition: Object,
-  innerRotation: Number
+  trousActive: Boolean,
+  trousOption: String,
+  trousCoin: Object,
+  trousPerso: Array
+
 })
+const trousAffiches = computed(() =>
+    props.trousActive
+        ? getTrous({
+          option: props.trousOption,
+          coin: props.trousCoin,
+          perso: props.trousPerso,
+          largeur: props.largeur,
+          hauteur: props.hauteur
+        })
+        : []
+)
+
 
 const x = 50
 const y = 50
@@ -60,24 +74,5 @@ const pathData = computed(() => {
   `
 })
 
-const getInnerShapePath = (shape, dimensions) => {
-  switch (shape) {
-    case 'rectangle':
-      return `M ${-dimensions.longueur / 2} ${-dimensions.largeur / 2}
-              h ${dimensions.longueur}
-              v ${dimensions.largeur}
-              h ${-dimensions.longueur} Z`
 
-    case 'rond':
-      return `M 0, 0
-              m -${dimensions.rayon}, 0
-              a ${dimensions.rayon},${dimensions.rayon} 0 1,0 ${dimensions.rayon * 2},0
-              a ${dimensions.rayon},${dimensions.rayon} 0 1,0 -${dimensions.rayon * 2},0`
-
-      // Ajoute d'autres formes ici si nécessaire
-
-    default:
-      return ''
-  }
-}
 </script>
